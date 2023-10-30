@@ -29,3 +29,9 @@ const operate = function(a, b, op) {
         divide(a, b);
     }
 }
+
+const button = document.querySelectorAll("button");
+button.forEach(btn => {btn.addEventListener("click", function() {
+    let btnValue = this.value;
+    document.getElementById("screen").innerText += btnValue;
+})});

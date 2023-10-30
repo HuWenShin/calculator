@@ -1,0 +1,27 @@
+.frame, #screen, #button {
+    border: 1px solid #000;
+}
+
+#screen {
+    margin: 10px auto 5px auto;
+    height: 60px;
+    width: 480px;
+}
+
+#upper {
+    padding: 6px;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 4px;
+}
+
+#lower {
+    padding: 6px;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 4px;
+}
+
+#button {
+    text-align: center;
+}
