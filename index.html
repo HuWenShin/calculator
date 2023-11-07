@@ -4,38 +4,41 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>HTML 5 Boilerplate</title>
+        <title>Calculator</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div class="frame">
-            <div id="screen"></div>
+            <div id="screen">
+                <div id="upper-screen"></div>
+                <div id="lower-screen"></div>
+            </div>
             <div id="plate">
                 <div id="upper">
-                    <button id="button clear">Clear</button>
-                    <button id="button delete">Delete</button>
+                    <button id="clr">Clear</button>
+                    <button id="delete">Delete</button>
                 </div>
                 <div id="lower">
 
-                    <button id="button num" value="1">1</button>
-                    <button id="button num" value="2">2</button>
-                    <button id="button num" value="3">3</button>
-                    <button id="button operator" value="+">+</button>
+                    <button class="num" value="1">1</button>
+                    <button class="num" value="2">2</button>
+                    <button class="num" value="3">3</button>
+                    <button class="operator" data-operator>+</button>
 
-                    <button id="button num" value="4">4</button>
-                    <button id="button num" value="5">5</button>
-                    <button id="button num" value="6">6</button>
-                    <button id="button operator" value="-">-</button>
+                    <button class="num" value="4">4</button>
+                    <button class="num" value="5">5</button>
+                    <button class="num" value="6">6</button>
+                    <button class="operator" data-operator>-</button>
 
-                    <button id="button num" value="7">7</button>
-                    <button id="button num" value="8">8</button>
-                    <button id="button num" value="9">9</button>
-                    <button id="button operator" value="×">×</button>
+                    <button class="num" value="7">7</button>
+                    <button class="num" value="8">8</button>
+                    <button class="num" value="9">9</button>
+                    <button class="operator" data-operator>×</button>
                     
-                    <button id="button operator" value=".">.</button>
-                    <button id="button num" value="0">0</button>
-                    <button id="button operator" value="=">=</button>
-                    <button id="button operator" value="÷">÷</button>
+                    <button class="operator" id="point">.</button>
+                    <button class="num" value="0">0</button>
+                    <button class="operator" id="equal">=</button>
+                    <button class="operator" data-operator>÷</button>
                     
                 </div>
             </div>
