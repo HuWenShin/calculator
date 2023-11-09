@@ -5,6 +5,8 @@ const shouldResetScreen = false;
 
 const opScreen = document.getElementById("upper-screen");
 const curScreen = document.getElementById("lower-screen");
+const numBtn = document.querySelectorAll("[value]");
+const opBtn = document.querySelectorAll("[data-operator]");
 const clrBtn = document.getElementById("clr");
 const delBtn = document.getElementById("delete");
 const ptBtn = document.getElementById("point");
@@ -15,11 +17,7 @@ ptBtn.addEventListener("click", appendPoint);
 
 /*
 
-
 const equalBtn = document.getElementById("equal");
-
-const numBtn = document.querySelectorAll("[data-number]");
-const opBtn = document.querySelectorAll("[data-operator]");
 
 
 
@@ -28,26 +26,15 @@ const opBtn = document.querySelectorAll("[data-operator]");
 equalBtn.addEventListener("click", operate);
 
 
-numBtn.forEach(button => button.addEventListener("click", () => appendNumber(this.value)));
-opBtn.forEach(button =>button.addEventListener("click", () => setOperation()));
 
-function appendNumber(num) {
-    if (curScreen.textContent === "0" || shouldResetScreen === true) resetScreen();
-    curScreen.textContent += num;
-}
-
-function resetScreen() {
-    curScreen.textContent = "";
-    shouldResetScreen = false;
-}
 */
 
 
-//display button pressed
-const button = document.querySelectorAll("button");
-button.forEach(btn => {btn.addEventListener("click", function() {
-    appendNumber(this.value);
-})});
+//display number button when pressed
+numBtn.forEach(btn => btn.addEventListener("click", function() {appendNumber(this.value)}));
+
+//display and set operation when operator button pressed
+opBtn.forEach(btn => btn.addEventListener("click", function() {setOperation(this.data-operator)}));
 
 //append num
 function appendNumber(num) {
@@ -61,6 +48,19 @@ function appendPoint() {
     if (curScreen.innerText === "") curScreen.innerText = "0";
     if (curScreen.innerText.includes(".")) return;
     curScreen.innerText += ".";
+}
+
+//set operation when operator is chosen
+function setOperation(op) {
+    if (op !== null) evaluate();
+    first = curScreen.innerText;
+    opScreen.innerText = curScreen.innerText;
+    opScreen.innerText += op;
+}
+
+//
+function evaluate() {
+
 }
 
 //reset screen
