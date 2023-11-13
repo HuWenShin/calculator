@@ -1,44 +1,27 @@
-const first = "";
-const second = "";
-const operator = ""; //should i set this to null?
-const shouldResetScreen = false;
+let first = "";
+let second = "";
+let operator = null; //should i set this to null?
+let shouldResetScreen = false;
 
 const opScreen = document.getElementById("upper-screen");
 const curScreen = document.getElementById("lower-screen");
-const numBtn = document.querySelectorAll("[value]");
+const numBtn = document.querySelectorAll("[data-number]");
 const opBtn = document.querySelectorAll("[data-operator]");
 const clrBtn = document.getElementById("clr");
 const delBtn = document.getElementById("delete");
 const ptBtn = document.getElementById("point");
+const equalBtn = document.getElementById("equal");
 
 clrBtn.addEventListener("click", clr);
 delBtn.addEventListener("click", del);
 ptBtn.addEventListener("click", appendPoint);
-
-/*
-
-const equalBtn = document.getElementById("equal");
-
-
-
-
-
-equalBtn.addEventListener("click", operate);
-
-
-
-*/
-
-
-//display number button when pressed
-numBtn.forEach(btn => btn.addEventListener("click", function() {appendNumber(this.value)}));
-
-//display and set operation when operator button pressed
-opBtn.forEach(btn => btn.addEventListener("click", function() {setOperation(this.data-operator)}));
+equalBtn.addEventListener("click", evaluate);
+numBtn.forEach(btn => btn.addEventListener("click", function() {appendNumber(btn.textContent)}));
+opBtn.forEach(btn => btn.addEventListener("click", function() {setOperation(btn.textContent)}));
 
 //append num
 function appendNumber(num) {
-    if (curScreen === "0" || shouldResetScreen === true) resetScreen();
+    if (curScreen.innerText === "0" || shouldResetScreen === true) resetScreen();
     curScreen.innerText += num;
 }
 
@@ -54,18 +37,29 @@ function appendPoint() {
 function setOperation(op) {
     if (op !== null) evaluate();
     first = curScreen.innerText;
-    opScreen.innerText = curScreen.innerText;
-    opScreen.innerText += op;
+    operator = op
+    opScreen.innerText = `${first} ${operator}`;
+    shouldResetScreen = true;
 }
 
 //
 function evaluate() {
-
+    if (operator === null || shouldResetScreen === true) return;
+    if (operator === "÷" && curScreen.innerText === "0") {
+        alert("You can't divide by 0");
+        return;
+    }
+    second = curScreen.innerText;
+    result = operate(first, second, operator);
+    opScreen.innerText = `${first} ${operator} ${second}`
+    curScreen.innerText = result;
+    operator = null;
+    shouldResetScreen = true;
 }
 
 //reset screen
 function resetScreen() {
-    curScreen = "0";
+    curScreen.innerText = "";
     shouldResetScreen = false;
 }
 
@@ -75,7 +69,7 @@ function clr() {
     curScreen.innerText = "";
     first = "";
     second = "";
-    operator = "";
+    operator = null;
 }
 
 //remove last character from string
